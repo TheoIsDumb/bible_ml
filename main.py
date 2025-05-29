@@ -89,9 +89,9 @@ def setBibleText(chapter, book=None):
 
     selectedChapter = chapter
 
-    bible_view.setHtml(f"<h1 style='font-family: \"Malini\"'>{selectedBook} {selectedChapter}</h1>")
+    bible_view.setHtml(f"<h1>{selectedBook} {selectedChapter}</h1>")
 
-    cursor.execute("""SELECT verse_no, verse
+    cursor.execute("""SELECT verse_no, verse, heading
             FROM verses WHERE book = ? and chapter = ?""",
                    [selectedBook, selectedChapter])
     
@@ -100,8 +100,11 @@ def setBibleText(chapter, book=None):
     verses = cursor.fetchall()
 
     for verse in verses:
+        if verse[2] != '':
+            bible_view.append(f"<h2><u>{(verse[2])}</u></h2>")
+
         bible_view.append(f"""
-        <p style='font-size: 23px; font-family: "Malini"'>
+        <p style='font-size: 22px; font-family: "Malini"'>
             {verse[0]}. {verse[1]}
         </p>
         """)
