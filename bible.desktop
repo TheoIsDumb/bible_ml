@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Bible
+Comment=Bible
+Exec=/usr/bin/bible
+Icon=/usr/lib/bible/bible.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
+

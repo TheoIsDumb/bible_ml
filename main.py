@@ -2,6 +2,7 @@ import sys
 import sqlite3
 from PyQt6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QFrame, QTreeWidget, QTreeWidgetItem, QTextBrowser, QTabWidget, QLineEdit, QListWidget
 from PyQt6.QtGui import QFont, QIcon
+import os
 
 ########################################################
 
@@ -10,7 +11,7 @@ selectedChapter = ""
 
 ########################################################
 
-connection = sqlite3.connect('bible.db')
+connection = sqlite3.connect(os.path.dirname(os.path.realpath(__file__)) + '/' + 'bible.db')
 cursor = connection.cursor()
 
 cursor.execute("SELECT book_mal_name FROM books WHERE book_cat = 'OLD';")
@@ -167,6 +168,6 @@ layout.addWidget(bible_view)
 window.setLayout(layout)
 
 window.show()
-window.setWindowIcon(QIcon("icon.png"))
+window.setWindowIcon(QIcon(os.path.dirname(os.path.realpath(__file__)) + '/' + "bible.png"))
 
 sys.exit(app.exec())
